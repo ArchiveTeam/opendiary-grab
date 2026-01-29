@@ -74,7 +74,7 @@ end
 
 discover_item = function(target, item)
   if not target[item] then
-print("discovered", item)
+--print("discovered", item)
     target[item] = true
     return true
   end
