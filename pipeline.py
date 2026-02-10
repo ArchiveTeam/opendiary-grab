@@ -76,7 +76,7 @@ if not WGET_AT:
 #
 # Update this each time you make a non-cosmetic change.
 # It will be added to the WARC files and reported to the tracker.
-VERSION = '20260207.01'
+VERSION = '20260210.01'
 USER_AGENT = 'Mozilla/5.0 (X11; Linux i686; rv:146.0) Gecko/20100101 Firefox/146.0'
 TRACKER_ID = 'opendiary'
 TRACKER_HOST = 'legacy-api.arpa.li'
@@ -263,7 +263,7 @@ class WgetArgs(object):
             item_type, item_value = item_name.split(':', 1)
             if item_type == 'post':
                 wget_args.extend(['--warc-header', 'opendiary-post: '+item_value])
-                wget_args.append('https://www.opendiary.com/?p='+item_value)
+                wget_args.append('https://www.opendiary.com/m/dummy/dummy-{}/'.format(item_value))
             #elif item_type == 'user':
             #    wget_args.extend(['--warc-header', 'opendiary-user: '+item_value])
             #    wget_args.append('https://www.opendiary.com/m/author/{}/'.format(item_value))
