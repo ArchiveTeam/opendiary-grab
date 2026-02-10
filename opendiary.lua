@@ -31,7 +31,7 @@ local is_initial_url = true
 
 local item_patterns = {
   ["^https?://[^/]*opendiary%.com/m/author/([^/%?&]+)/$"] = "user",
-  ["^https?://[^/]*opendiary%.com/%?p=([0-9]+)$"] = "post",
+  ["^https?://[^/]*opendiary%.com/m/dummy/dummy%-([0-9]+)/$"] = "post",
   ["^https?://[^/]*opendiary%.com/tag/([^/%?&]+)/$"]="tag",
   ["^https?://([^/]*opendiary%.com/wp%-.+)$"] = "asset"
 }
@@ -74,7 +74,7 @@ end
 
 discover_item = function(target, item)
   if not target[item] then
-print("discovered", item)
+--print("discovered", item)
     target[item] = true
     return true
   end
@@ -155,7 +155,7 @@ allowed = function(url, parenturl)
   local skip = false
   for pattern, type_ in pairs(item_patterns) do
     match = string.match(url, pattern)
-    if match and type_ ~= "post" then
+    if match then
       local new_item = type_ .. ":" .. match
       if new_item ~= item_name then
         discover_item(discovered_items, new_item)
